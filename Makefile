@@ -1,5 +1,5 @@
 # Daniel Velazquez
-# January 2016
+# January 2016 - GIT Test
 CXX ?= gcc
 
 CXXFLAGS += -c -Wall $(shell pkg-config --cflags opencv -lgobject-2.0)
