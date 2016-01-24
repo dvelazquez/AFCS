@@ -1,10 +1,15 @@
-// Daniel Velazquez
-// Started December 2010
-// Re-started January 2016
-// Water meter monitoring by webcam
+/*	Daniel Velazquez
+	Started December 2010
+	Re-started January 2016
+	Auto Functioncheck Sheet System
+	https://github.com/dvelazquez/AFCS
+*/
+
 
 #include <opencv/cv.h>
+#include "/usr/local/include/opencv2/imgproc/imgproc_c.h"
 #include "opencv/highgui.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,14 +26,29 @@
 #define BLUE CV_RGB(0,0,255)
 #define BLACK CV_RGB(0,0,0)
 #define WHITE CV_RGB(255,255,255)
+#define MAX_CONTOUR_LEVELS 10
+
+// HSV Thresholds
+/*			  H,    S,        V
+		RED (0, 100%, 100%)
+		LIME(120, 100%, 100%)
+		BLUE(240, 100%, 100%)*/
+
+#define RedThresholdMin cvScalar(0, 120, 120,0)		// <- Settings to be adjusted per LED Color
+#define RedThresholdMax cvScalar(0, 255, 255,0)
 
 int main( int argc, char *argv[ ] )
 {
     /* Initialize images */
     IplImage * Picture;
     IplImage * Gray;
+    IplImage * HSV;
+    IplImage * HSV_Result;
     IplImage * Bin;
     IplImage * Result;
+
+    CvSeq *contours = 0;
+
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
@@ -56,13 +76,15 @@ int main( int argc, char *argv[ ] )
 
     Picture = cvQueryFrame( capture );
     Gray= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1 );  // Do not create the image everytime inside the main loop
+    HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime inside
+    HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
 
     cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
     while (key != 'q'){
                 Picture = cvQueryFrame( capture );
 
-                cvPutText (Picture, argv[1],cvPoint(180,470), &font, cvScalar(255,0,0,0));
-//                cvPutText (Picture,"Daniel Velazquez - Water Meter",cvPoint(180,470), &font, cvScalar(255,0,0,0));   //added last 0
+//                cvPutText (Picture, argv[1],cvPoint(180,470), &font, cvScalar(255,0,0,0));
+                cvPutText (Picture,"AFCS",cvPoint(180,470), &font, cvScalar(255,0,0,0));   //added last 0
                 // Speedo cross
                 cvLine(Picture,cvPoint(315, 130),cvPoint(315,150),RED,1,8,1); //added shift=1 ?
                 cvLine(Picture,cvPoint(305, 140),cvPoint(325,140),RED,1,8,1);//added shift=1 ?
@@ -79,13 +101,26 @@ int main( int argc, char *argv[ ] )
                 cvRectangle(Picture, cvPoint(230,265), cvPoint(265,300), BLUE, 2,1,1);//added shift=1 ?
 
 		/* Now some processing to the image */
-		cvCvtColor(Picture,Gray,CV_BGR2GRAY); // Convert color image to gray
-		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
+//		cvCvtColor(Picture,HSV,CV_BGR2GRAY); // Convert color image to gray		
+//		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
+		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
+		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
+		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
+		// Lets try circles detection 
+		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
+		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
+		printf("Contours %i", contours);
 
 
-//                cvShowImage ("Camera", Picture);
-                cvShowImage ("Camera", Gray);
-                cvMoveWindow("Camera", 100, 50);
+
+
+
+
+                cvShowImage ("Camera", Picture);
+//                cvMoveWindow("Camera", 100, 50);
+                cvShowImage ("HSV", HSV_Result);
+//                cvMoveWindow("HSV", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
