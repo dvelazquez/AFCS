@@ -48,7 +48,7 @@ int main( int argc, char *argv[ ] )
     IplImage * Result;
 
     CvSeq *contours = 0;
-
+    CvPoint *point = 0;
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
@@ -110,7 +110,12 @@ int main( int argc, char *argv[ ] )
 		// Lets try circles detection 
 		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
 		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
-		printf("Contours %i", contours);
+
+		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
+		x=point->x;
+		y=point->y;
+		printf("Point X %i, Point Y %i\n", x, y);
+                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
 
 
 
@@ -122,7 +127,7 @@ int main( int argc, char *argv[ ] )
                 cvShowImage ("HSV", HSV_Result);
 //                cvMoveWindow("HSV", 100, 50);
 
-       key = cvWaitKey( 1 );    // Press Q to Quit
+       key = cvWaitKey( 20 );    // Press Q to Quit
         }
 
     cvReleaseMemStorage(&storage);
