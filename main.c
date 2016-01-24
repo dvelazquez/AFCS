@@ -88,19 +88,20 @@ int main( int argc, char *argv[ ] )
 		double h;
 		cvGetSize(Picture);
 		cvSize(w,h);
+
 		printf("W= %d  H=%d\n",w,h);
 
                 cvPutText (Picture,"AFCS",cvPoint(180,470), &font, cvScalar(255,0,0,0));   //added last 0
 
                 // Let's draw a mesh to show coordinates for development
-		for (x=1;x<=6200; x=x+10){
-			cvLine(Picture,cvPoint(x, 1),cvPoint(x,680),GREEN,1,8,1); //added shift=1 ?			
-			cvPutText (Picture,"*",cvPoint(620,480), &font, cvScalar(255,0,0,0));   //added last 0
-//			printf("int %i",x);
-
+		for (x=1;x<=1276; x=x+50){
+			for (y=1;y<=956; y=y+50){
+				cvLine(Picture,cvPoint(x, 1),cvPoint(x,956),GREEN,1,0,1); 
+				cvLine(Picture,cvPoint(1, y),cvPoint(1276,y),GREEN,1,0,1); 			
+			}
 		}
-                cvLine(Picture,cvPoint(610, 470),cvPoint(615,475),RED,1,8,1);//added shift=1 ?
-                cvLine(Picture,cvPoint(1270, 1),cvPoint(1270,1200),RED,1,8,1);//added shift=1 ?
+		
+
 
 		/* Now some processing to the image */
 //		cvCvtColor(Picture,HSV,CV_BGR2GRAY); // Convert color image to gray		
@@ -118,9 +119,6 @@ int main( int argc, char *argv[ ] )
 		y=point->y;
 //		printf("Point X %i, Point Y %i\n", x, y);
                 cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
-
-
-
 
 
 
@@ -155,4 +153,7 @@ Initial Squares, texts, etc...
 
                 // Door
                 cvRectangle(Picture, cvPoint(230,265), cvPoint(265,300), BLUE, 2,1,1);//added shift=1 ?
+
+             cvRectangle(Picture, cvPoint(1,1), cvPoint(1276,956), RED, 2,1,1);// size of full screen
+
 */
