@@ -67,13 +67,14 @@ int main( int argc, char *argv[ ] )
     CvScalar s;
 
     CvFont font;
-    double hScale=0.7;
-    double vScale=0.7;
-    int    lineWidth=2; 
+    double hScale=0.5;
+    double vScale=0.5;
+    int    lineWidth=1; 
     int key=0;
 
     cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, hScale,vScale,0,lineWidth,8);   //added 8 (line type)
 
+    Picture = cvQueryFrame( capture );
     Picture = cvQueryFrame( capture );
 
     Gray= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1 );  // Do not create the image everytime 
@@ -81,26 +82,34 @@ int main( int argc, char *argv[ ] )
     HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
 
     cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
+		int w;
+		int h;
+
     while (key != 'q'){
                 Picture = cvQueryFrame( capture );
 
-		double w;
-		double h;
-		cvGetSize(Picture);
-		cvSize(w,h);
-
-		printf("W= %d  H=%d\n",w,h);
-
-                cvPutText (Picture,"AFCS",cvPoint(180,470), &font, cvScalar(255,0,0,0));   //added last 0
+		CvSize dim =cvGetSize(Picture);
+		printf("W= %i  H=%i\n",dim.width, dim.height);
 
                 // Let's draw a mesh to show coordinates for development
-		for (x=1;x<=1276; x=x+50){
-			for (y=1;y<=956; y=y+50){
-				cvLine(Picture,cvPoint(x, 1),cvPoint(x,956),GREEN,1,0,1); 
-				cvLine(Picture,cvPoint(1, y),cvPoint(1276,y),GREEN,1,0,1); 			
+		for (x=0;x<=1276; x=x+50){
+			for (y=0;y<=956; y=y+50){
+				cvLine(Picture,cvPoint(x, 1),cvPoint(x,956),GREEN,1,0,1);   // 19 horizontal lines
+				cvLine(Picture,cvPoint(1, y),cvPoint(1276,y),GREEN,1,0,1);  // 25 vertical lines	
 			}
 		}
-		
+		// Center Cross
+                cvLine(Picture,cvPoint(630, 450),cvPoint(670,450),RED,2,0,1);
+                cvLine(Picture,cvPoint(650, 430),cvPoint(650,465),RED,2,0,1);
+                cvPutText (Picture,"(650,450)",cvPoint(330,250), &font, cvScalar(255,0,0,0));
+		// Lower Right Corner
+                cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
+                cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
+                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
+		// Lower Right Corner
+                cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
+                cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
+                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
 
 
 		/* Now some processing to the image */
@@ -108,26 +117,26 @@ int main( int argc, char *argv[ ] )
 //		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
 		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
 		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
-		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
-		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
+		cvDilate(HSV_Result, HSV_Result, NULL, 5);      //last arg is iterations
+//		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
 		// Lets try circles detection 
 		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
 		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
 
-		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
-		x=point->x;
-		y=point->y;
+//		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
+//		x=point->x;
+//		y=point->y;
 //		printf("Point X %i, Point Y %i\n", x, y);
-                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
+//                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
 
 
 
                 cvShowImage ("Camera", Picture);
-                cvMoveWindow("Camera", 100, 50);
-//                cvShowImage ("HSV", HSV_Result);
+//                cvMoveWindow("Camera", 100, 50);
+//                cvShowImage ("HSV", HSV);
 //                cvMoveWindow("HSV", 100, 50);
 
-       key = cvWaitKey( 20 );    // Press Q to Quit
+       key = cvWaitKey( 1 );    // Press Q to Quit
         }
 
     cvReleaseMemStorage(&storage);
