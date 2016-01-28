@@ -105,16 +105,16 @@ int main( int argc, char *argv[ ] )
 		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
 		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
 
-//		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
-//		x=point->x;
-//		y=point->y;
-//		printf("Point X %i, Point Y %i\n", x, y);
-//                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
+		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
+		x=point->x;
+		y=point->y;
+		printf("Point X %i, Point Y %i\n", x, y);
+                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
 
 
 
                 cvShowImage ("Camera", Picture);
-//                cvMoveWindow("Camera", 100, 50);
+                cvMoveWindow("Camera", 100, 50);
 //                cvShowImage ("HSV", HSV);
 //                cvMoveWindow("HSV", 100, 50);
 
