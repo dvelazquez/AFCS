@@ -71,7 +71,7 @@ int main( int argc, char *argv[ ] )
 
     /* Parameters */
     float    threshold = 0.01;
-    int      x,y;
+    int      x,y,i,j;
     int key=0;
 
     cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, hScale,vScale,0,lineWidth,8); 
@@ -87,12 +87,12 @@ int main( int argc, char *argv[ ] )
     while (key != 'q'){
                 Picture = cvQueryFrame( capture );
 
-		int w;
+/*		int w;
 		int h;
 		CvSize dim =cvGetSize(Picture);
-		printf("W= %i  H=%i\n",dim.width, dim.height);
+		printf("W= %i  H=%i\n",dim.width, dim.height);*/
 
-		mesh(Picture );  // Routine to draw a mesh with coordinates
+//		mesh(Picture );  // Routine to draw a mesh with coordinates
 
 		/* Now some processing to the image */
 //		cvCvtColor(Picture,HSV,CV_BGR2GRAY); // Convert color image to gray		
@@ -104,13 +104,23 @@ int main( int argc, char *argv[ ] )
 		// Lets try circles detection 
 		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
 		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
+	
+		CvPoint *r=NULL;
+		i++;
+		for(j=0; j<contours->total;j++){
+			r=CV_GET_SEQ_ELEM(CvPoint,contours,j);  // 1 is i
+			printf("Point X %i, Point Y %i\n",r->x, r->y);
+			printf("J=%i,  I=%i,\n",j,i);
+		}
+		printf("End of FOR Loop");
 
-		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,1);  // 1 is i
-		x=point->x;
-		y=point->y;
-		printf("Point X %i, Point Y %i\n", x, y);
-                cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
-
+//		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,3);  // 1 is i
+//		x=point->x;
+//		y=point->y;
+//	        if((x!=0)&&(y!=0)){
+//		printf("Point X %i, Point Y %i\n", x, y);
+	         //       cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
+//		}
 
 
                 cvShowImage ("Camera", Picture);
