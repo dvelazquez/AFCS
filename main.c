@@ -5,12 +5,11 @@
 	https://github.com/dvelazquez/AFCS
 */
 
-
 #include <opencv/cv.h>
 #include "/usr/local/include/opencv2/imgproc/imgproc_c.h"
 #include "opencv/highgui.h"
 
-
+// May not need all these includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,23 +19,19 @@
 #include <limits.h>
 #include <time.h>
 #include <ctype.h>
+#include "AFCS.h"
 
-#define RED CV_RGB(255,0,0)
-#define GREEN CV_RGB(0,255,0)
-#define BLUE CV_RGB(0,0,255)
-#define BLACK CV_RGB(0,0,0)
-#define WHITE CV_RGB(255,255,255)
-#define MAX_CONTOUR_LEVELS 10
+   IplImage * Picture;
+   IplImage * Gray;
+   IplImage * HSV;
+   IplImage * HSV_Result;
+   IplImage * Bin;
+   IplImage * Result;
 
-// HSV Thresholds
-/*			  H,    S,        V
-		RED (0, 100%, 100%)
-		LIME(120, 100%, 100%)
-		BLUE(240, 100%, 100%)*/
+//    CvSeq *contours = 0;
+//    CvPoint *point = 0;
 
-#define RedThresholdMin cvScalar(0, 120, 120,0)		// <- Settings to be adjusted per LED Color
-#define RedThresholdMax cvScalar(0, 255, 255,0)
-    IplImage * Picture;
+
     CvScalar s;
 
     CvFont font;
@@ -45,34 +40,24 @@
 
     int    lineWidth=1; 
 
-
 int main( int argc, char *argv[ ] )
 {
-    /* Initialize images */
-
-    IplImage * Gray;
-    IplImage * HSV;
-    IplImage * HSV_Result;
-    IplImage * Bin;
-    IplImage * Result;
-
-    CvSeq *contours = 0;
-    CvPoint *point = 0;
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
       return 0;         // Example how to read the input from the command line
    }*/
+   CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
+   CvCapture * capture;
 
     /* Buffer */
-    CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
-   CvCapture * capture;
    capture = cvCaptureFromCAM(0); // the parameter for a cam
 
     /* Parameters */
     float    threshold = 0.01;
     int      x,y,i,j;
     int key=0;
+    i=0;
 
     cvInitFont(&font,CV_FONT_HERSHEY_SIMPLEX|CV_FONT_ITALIC, hScale,vScale,0,lineWidth,8); 
 
@@ -82,58 +67,40 @@ int main( int argc, char *argv[ ] )
     HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime 
     HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
 
-    cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
+//    cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
 
     while (key != 'q'){
                 Picture = cvQueryFrame( capture );
 
-/*		int w;
-		int h;
-		CvSize dim =cvGetSize(Picture);
-		printf("W= %i  H=%i\n",dim.width, dim.height);*/
+		mesh(Picture );  // Routine to draw a mesh with coordinates
+		improc(Picture);// Image processing routine
 
-//		mesh(Picture );  // Routine to draw a mesh with coordinates
 
-		/* Now some processing to the image */
-//		cvCvtColor(Picture,HSV,CV_BGR2GRAY); // Convert color image to gray		
-//		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
-		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
-		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
-		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
-//		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
-		// Lets try circles detection 
-		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
-		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
-	
-		CvPoint *r=NULL;
+/*		CvPoint *r=NULL;
 		i++;
 		for(j=0; j<contours->total;j++){
 			r=CV_GET_SEQ_ELEM(CvPoint,contours,j);  // 1 is i
 			printf("Point X %i, Point Y %i\n",r->x, r->y);
 			printf("J=%i,  I=%i,\n",j,i);
+			printf("Contours Total=%i\n",contours->total);
 		}
-		printf("End of FOR Loop");
-
-//		point = (CvPoint *)CV_GET_SEQ_ELEM(CvPoint,contours,3);  // 1 is i
-//		x=point->x;
-//		y=point->y;
-//	        if((x!=0)&&(y!=0)){
-//		printf("Point X %i, Point Y %i\n", x, y);
-	         //       cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
-//		}
+		printf("End of FOR Loop");*/
 
 
-                cvShowImage ("Camera", Picture);
-                cvMoveWindow("Camera", 100, 50);
-//                cvShowImage ("HSV", HSV);
+
+//                cvShowImage ("Camera", Picture);
+//                cvMoveWindow("Camera", 100, 50);
+//                cvShowImage ("HSV", HSV_Result);
 //                cvMoveWindow("HSV", 100, 50);
+                cvShowImage ("Gray", Gray);
+                cvMoveWindow("Gray", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
 
     cvReleaseMemStorage(&storage);
-    cvReleaseImage( &Gray );
-    cvDestroyWindow( "Camera" );    // Destroy the window
+    cvReleaseImage( &HSV );
+    cvDestroyWindow( "HSV" );    // Destroy the window
     cvReleaseCapture( &capture );   // Release it or never close
     }
 

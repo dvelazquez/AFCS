@@ -17,13 +17,8 @@
 #include <limits.h>
 #include <time.h>
 #include <ctype.h>
+#include "AFCS.h"
 
-#define RED CV_RGB(255,0,0)
-#define GREEN CV_RGB(0,255,0)
-#define BLUE CV_RGB(0,0,255)
-#define BLACK CV_RGB(0,0,0)
-#define WHITE CV_RGB(255,255,255)
-#define MAX_CONTOUR_LEVELS 10
     CvFont font;
 
 int mesh(IplImage * Picture){
