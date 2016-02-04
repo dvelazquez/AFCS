@@ -19,6 +19,7 @@
 #include <limits.h>
 #include <time.h>
 #include <ctype.h>
+#include <fcntl.h>  // open file
 #include "AFCS.h"
 
    IplImage * Picture;
@@ -31,7 +32,7 @@
 //    CvSeq *contours = 0;
 //    CvPoint *point = 0;
 
-
+   int Log; 
     CvScalar s;
 
     CvFont font;
@@ -47,8 +48,12 @@ int main( int argc, char *argv[ ] )
       printf("Argument from command line was %s", argv[1]);
       return 0;         // Example how to read the input from the command line
    }*/
+
+
    CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
    CvCapture * capture;
+
+   Log = open("T1XX_A6_%s_Date.Log",argv[1], O_RDWR | O_CREAT, -1);
 
     /* Buffer */
    capture = cvCaptureFromCAM(0); // the parameter for a cam
@@ -88,12 +93,12 @@ int main( int argc, char *argv[ ] )
 
 
 
-//                cvShowImage ("Camera", Picture);
-//                cvMoveWindow("Camera", 100, 50);
+                cvShowImage ("Camera", Picture);
+                cvMoveWindow("Camera", 100, 50);
 //                cvShowImage ("HSV", HSV_Result);
 //                cvMoveWindow("HSV", 100, 50);
-                cvShowImage ("Gray", Gray);
-                cvMoveWindow("Gray", 100, 50);
+//                cvShowImage ("Gray", Gray);
+//                cvMoveWindow("Gray", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
@@ -102,5 +107,6 @@ int main( int argc, char *argv[ ] )
     cvReleaseImage( &HSV );
     cvDestroyWindow( "HSV" );    // Destroy the window
     cvReleaseCapture( &capture );   // Release it or never close
+   close(Log);
     }
 

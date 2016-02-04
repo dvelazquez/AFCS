@@ -31,16 +31,16 @@ int improc(IplImage * Picture){
     CvCapture * capture;
 
 		/* Now some processing to the image */
-		cvCvtColor(Picture,Gray,CV_BGR2GRAY); // Convert color image to gray		
-		cvDilate(Gray, Gray, NULL, 20);      //last arg is iterations
+//		cvCvtColor(Picture,Gray,CV_BGR2GRAY); // Convert color image to gray		
+//		cvDilate(Gray, Gray, NULL, 20);      //last arg is iterations
 //		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
-//		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
-//		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
-//		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
+		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
+		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
 //		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
 		// Lets try circles detection 
 		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
-//		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
+		cvDrawContours(Picture, contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
 	
 	return;
 
