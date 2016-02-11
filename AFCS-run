@@ -6,8 +6,7 @@ trap "rm -f $tempfile" 0 1 2 5 15
 $DIALOG --clear --title "Auto Function Checksheet System" \
         --menu "\nTry to run AFCS with dialog instead of elaborate GUIs\n" \
         20 80 10 \
-  'a.out' 'Test to create the Log File' \
-  'main' 'Auto Function Checksheet system' \
+  'AFCS.bin' 'Auto Function Checksheet system' \
    2> $tempfile
 
 retval=$?
@@ -16,8 +15,8 @@ choice=`cat $tempfile`
 
 case $retval in
   0)
-    cd /home/pi/OpenCV/AFCS/
-    /home/pi/OpenCV/AFCS/$choice
+    cd /home/pi/OpenCV/AFCS/bin
+    /home/pi/OpenCV/AFCS/bin/$choice
     echo Press RETURN to continue...
     read dummy
     exec $0;;
