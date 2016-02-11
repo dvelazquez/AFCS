@@ -31,7 +31,7 @@ int ImageProcessing(IplImage * Picture){
 		// Extract ROI and put it in a different window
 		// ROI should come from an XY file of the feaures to
 		// analyze (LEDs, Pointers, Displays, etc)
-		// extract to a different function and *.c file
+		// extract to a different function and *.c file  ??			FEB 10 2016
 		cvSetImageROI(Picture, cvRect(50, 50, 100, 100));  // The TFT
 		IplImage *img2 = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
 		/* copy subimage */
