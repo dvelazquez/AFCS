@@ -20,16 +20,27 @@
 
 
 int ImageProcessing(IplImage * Picture){
-   CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
-    CvCapture * capture;
-
 		/* Now some processing to the image */
 //		cvCvtColor(Picture,Gray,CV_BGR2GRAY); // Convert color image to gray		
 //		cvDilate(Gray, Gray, NULL, 20);      //last arg is iterations
 //		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
 		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
-		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
-		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+//		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
+//		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+
+		// Extract ROI and put it in a different window
+		// ROI should come from an XY file of the feaures to
+		// analyze (LEDs, Pointers, Displays, etc)
+		// extract to a different function and *.c file
+		cvSetImageROI(Picture, cvRect(50, 50, 100, 100));  // The TFT
+		IplImage *img2 = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
+		/* copy subimage */
+		cvCopy(Picture, img2, NULL);
+		/* always reset the Region of Interest */
+		cvResetImageROI(Picture);
+		cvShowImage ("ROI", img2);
+		// Shall we run the thresholding and all that to ROIs ??
+
 //		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
 		// Lets try circles detection 
 //		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
@@ -52,3 +63,15 @@ int ImageProcessing(IplImage * Picture){
 //		printf("Point X %i, Point Y %i\n", x, y);
 	         //       cvPutText (Picture,"Here",cvPoint(x,y), &font, cvScalar(255,0,0,0));   //added last 0
 //		}
+
+
+/*		CvPoint *r=NULL;
+		i++;
+		for(j=0; j<contours->total;j++){
+			r=CV_GET_SEQ_ELEM(CvPoint,contours,j);  // 1 is i
+			printf("Point X %i, Point Y %i\n",r->x, r->y);
+			printf("J=%i,  I=%i,\n",j,i);
+			printf("Contours Total=%i\n",contours->total);
+		}
+		printf("End of FOR Loop");*/
+

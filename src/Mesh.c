@@ -32,7 +32,7 @@ int Mesh(IplImage * Picture){
 			}
 		}
 		// Center Cross
-                cvLine(Picture,cvPoint(630, 450),cvPoint(670,450),RED,2,0,1);
+/*                cvLine(Picture,cvPoint(630, 450),cvPoint(670,450),RED,2,0,1);
                 cvLine(Picture,cvPoint(650, 430),cvPoint(650,465),RED,2,0,1);
                 cvPutText (Picture,"(650,450)",cvPoint(330,250), &font, cvScalar(255,0,0,0));
 		// Lower Right Corner
@@ -42,7 +42,7 @@ int Mesh(IplImage * Picture){
 		// Lower Right Corner
                 cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
                 cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
-                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
+                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));*/
 
 		return ;
 }

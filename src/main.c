@@ -28,6 +28,7 @@
    IplImage * HSV_Result;
    IplImage * Bin;
    IplImage * Result;
+   IplImage * ROI;
 
 //    CvSeq *contours = 0;
 //    CvPoint *point = 0;
@@ -44,16 +45,14 @@
 int main( int argc, char *argv[ ] )
 {
    Initialization();
+
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
       return 0;         // Example how to read the input from the command line
    }*/
 
-
    CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
    CvCapture * capture;
-
-   Log = open("T1XX_A6_%s_Date.Log",argv[1], O_RDWR | O_CREAT, -1);
 
     /* Buffer */
    capture = cvCaptureFromCAM(0); // the parameter for a cam
@@ -74,31 +73,24 @@ int main( int argc, char *argv[ ] )
 
 //    cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
 
-    while (key != 'q'){
-                Picture = cvQueryFrame( capture );
+	while (key != 'q'){
+		Picture = cvQueryFrame( capture );
 
 		Mesh(Picture );  // Routine to draw a mesh with coordinates
 		ImageProcessing(Picture);// Image processing routine
 
 
-/*		CvPoint *r=NULL;
-		i++;
-		for(j=0; j<contours->total;j++){
-			r=CV_GET_SEQ_ELEM(CvPoint,contours,j);  // 1 is i
-			printf("Point X %i, Point Y %i\n",r->x, r->y);
-			printf("J=%i,  I=%i,\n",j,i);
-			printf("Contours Total=%i\n",contours->total);
-		}
-		printf("End of FOR Loop");*/
 
 
 
                 cvShowImage ("Camera", Picture);
-                cvMoveWindow("Camera", 100, 50);
+//                cvMoveWindow("Camera", 100, 50);
 //                cvShowImage ("HSV", HSV_Result);
 //                cvMoveWindow("HSV", 100, 50);
 //                cvShowImage ("Gray", Gray);
 //                cvMoveWindow("Gray", 100, 50);
+//                cvShowImage ("ROI", ROI);
+//                cvMoveWindow("ROI", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
