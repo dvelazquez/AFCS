@@ -68,8 +68,10 @@ int main( int argc, char *argv[ ] )
     Picture = cvQueryFrame( capture );
 
     Gray= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1 );  // Do not create the image everytime 
-    HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime 
-    HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
+    HSV= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 3 );  // ROI Size
+    HSV_Result= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 1);  // ROI Size
+//    HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime 
+//    HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
 
 //    cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
 
@@ -85,11 +87,11 @@ int main( int argc, char *argv[ ] )
 
                 cvShowImage ("Camera", Picture);
 //                cvMoveWindow("Camera", 100, 50);
-//                cvShowImage ("HSV", HSV);
+                cvShowImage ("HSV", HSV);
 //                cvMoveWindow("HSV", 100, 50);
 //                cvShowImage ("Gray", Gray);
 //                cvMoveWindow("Gray", 100, 50);
-						cvShowImage ("ROI", ROI);
+//						cvShowImage ("ROI", ROI);
 //                cvMoveWindow("ROI", 100, 50);
 
 

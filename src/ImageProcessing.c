@@ -30,13 +30,18 @@ int ImageProcessing(IplImage * Picture){
 		// analyze (LEDs, Pointers, Displays, etc)
 		// extract to a different function and *.c file  ??			FEB 10 2016
 		cvSetImageROI(Picture, cvRect(285, 224, 25, 22));  // TT ROI Test
-		ROI = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
+//		ROI = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
+		ROI = cvCreateImage(cvSize(25, 22), IPL_DEPTH_8U, 3);
 		/* copy subimage */
 		cvCopy(Picture, ROI, NULL);
 		/* always reset the Region of Interest */
 		cvResetImageROI(Picture);
 
 		// Shall we run the thresholding and all that to ROIs ??
+		cvCvtColor(ROI, HSV, CV_BGR2HSV); // Convert color image to HSV
+		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
+		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+
 		// NEED TO GET ROI SIZE TO CREATE HSV THE SAME SIZE
 //		cvCvtColor(ROI, HSV, CV_BGR2HSV); // Convert color image to HSV
 //		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
