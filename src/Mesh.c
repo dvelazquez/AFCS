@@ -29,25 +29,29 @@ int Mesh(IplImage * Picture){
 			for (y=0;y<=956; y=y+50){
 				cvLine(Picture,cvPoint(x, 1),cvPoint(x,956),GREEN,1,0,1);   // 19 horizontal lines
 				cvLine(Picture,cvPoint(1, y),cvPoint(1276,y),GREEN,1,0,1);  // 25 vertical lines	
-			}
+			}   
+	// Why cvLine coordinates are (956,1276) but image is (480,620) (x2= 960,1240)
 		}
-		// Center Cross
-/*                cvLine(Picture,cvPoint(630, 450),cvPoint(670,450),RED,2,0,1);
-                cvLine(Picture,cvPoint(650, 430),cvPoint(650,465),RED,2,0,1);
-                cvPutText (Picture,"(650,450)",cvPoint(330,250), &font, cvScalar(255,0,0,0));
-		// Lower Right Corner
-                cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
-                cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
-                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
-		// Lower Right Corner
-                cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
-                cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
-                cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));*/
+	// Center Cross
+	cvLine(Picture,cvPoint(630, 450),cvPoint(670,450),RED,2,0,1);
+	cvLine(Picture,cvPoint(650, 430),cvPoint(650,465),RED,2,0,1);
+	cvPutText (Picture,"(650,450)",cvPoint(330,250), &font, cvScalar(255,0,0,0));
+	// Lower Right Corner
+	cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
+	cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
+	cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
+	// Lower Right Corner
+	cvLine(Picture,cvPoint(1230, 950),cvPoint(1250,950),RED,2,0,1);
+	cvLine(Picture,cvPoint(1250, 930),cvPoint(1250,950),RED,2,0,1);
+	cvPutText (Picture,"(1250,950)",cvPoint(530,460), &font, cvScalar(255,0,0,0));
 
-		return ;
+	// TT ROI Test
+	cvRectangle(Picture, cvPoint(570,449), cvPoint(620,490), BLUE, 2,1,1);//added shift=1 ?
+
+	return ;
 }
 /*
-Initial Squares, texts, etc...
+					 Initial Squares, texts, etc...
                 //  Temp cross
                 cvLine(Picture,cvPoint(95, 150),cvPoint(95,170),GREEN,1,8,1);//added shift=1 ?
 
@@ -59,10 +63,8 @@ Initial Squares, texts, etc...
                 // Fuel Tank
                 cvRectangle(Picture, cvPoint(490,60), cvPoint(520,90), RED, 2,1,1);//added shift=1 ?
 
-                // Door
+                // TT ROI Test
                 cvRectangle(Picture, cvPoint(230,265), cvPoint(265,300), BLUE, 2,1,1);//added shift=1 ?
-
-             cvRectangle(Picture, cvPoint(1,1), cvPoint(1276,956), RED, 2,1,1);// size of full screen
-
+	             cvRectangle(Picture, cvPoint(1,1), cvPoint(1276,956), RED, 2,1,1);// size of full screen
 */
 

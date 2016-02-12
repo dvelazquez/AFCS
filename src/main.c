@@ -22,7 +22,7 @@
 #include <fcntl.h>  // open file
 #include "../include/AFCS.h"
 
-   IplImage * Picture;
+	IplImage * Picture;
    IplImage * Gray;
    IplImage * HSV;
    IplImage * HSV_Result;
@@ -85,12 +85,13 @@ int main( int argc, char *argv[ ] )
 
                 cvShowImage ("Camera", Picture);
 //                cvMoveWindow("Camera", 100, 50);
-//                cvShowImage ("HSV", HSV_Result);
+                cvShowImage ("HSV", HSV);
 //                cvMoveWindow("HSV", 100, 50);
 //                cvShowImage ("Gray", Gray);
 //                cvMoveWindow("Gray", 100, 50);
-//                cvShowImage ("ROI", ROI);
+//						cvShowImage ("ROI", ROI);
 //                cvMoveWindow("ROI", 100, 50);
+
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }

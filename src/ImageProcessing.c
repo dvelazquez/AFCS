@@ -24,22 +24,24 @@ int ImageProcessing(IplImage * Picture){
 //		cvCvtColor(Picture,Gray,CV_BGR2GRAY); // Convert color image to gray		
 //		cvDilate(Gray, Gray, NULL, 20);      //last arg is iterations
 //		cvCanny(Gray, Gray, 1, 200, 3);		// this function finds edges
-		cvCvtColor(Picture, HSV, CV_BGR2HSV); // Convert color image to HSV
-//		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
-//		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
 
 		// Extract ROI and put it in a different window
 		// ROI should come from an XY file of the feaures to
 		// analyze (LEDs, Pointers, Displays, etc)
 		// extract to a different function and *.c file  ??			FEB 10 2016
-		cvSetImageROI(Picture, cvRect(50, 50, 100, 100));  // The TFT
-		IplImage *img2 = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
+		cvSetImageROI(Picture, cvRect(285, 224, 25, 22));  // TT ROI Test
+		ROI = cvCreateImage(cvGetSize(Picture), Picture->depth, Picture->nChannels);
 		/* copy subimage */
-		cvCopy(Picture, img2, NULL);
+		cvCopy(Picture, ROI, NULL);
 		/* always reset the Region of Interest */
 		cvResetImageROI(Picture);
-		cvShowImage ("ROI", img2);
+
 		// Shall we run the thresholding and all that to ROIs ??
+		// NEED TO GET ROI SIZE TO CREATE HSV THE SAME SIZE
+//		cvCvtColor(ROI, HSV, CV_BGR2HSV); // Convert color image to HSV
+//		cvInRangeS(HSV, RedThresholdMin, RedThresholdMax, HSV_Result);
+//		cvDilate(HSV_Result, HSV_Result, NULL, 20);      //last arg is iterations
+
 
 //		cvCanny(HSV_Result, HSV_Result,100,200,3);   //img,src,thres1,thres2,ap size   //EDGES
 		// Lets try circles detection 
