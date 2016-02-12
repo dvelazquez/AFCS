@@ -1,5 +1,5 @@
 # AFCS
-Auto Function Checksheet System
+<h3>Auto Function Checksheet System</h3>  
 Intended to run functional checks to IPCs with Image Processing, OpenCV and [TBD Hardware]  
 
 Compiling with CMakeLists instead of Makefile  
