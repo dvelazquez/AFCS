@@ -29,6 +29,7 @@
    IplImage * Bin;
    IplImage * Result;
    IplImage * ROI;
+   IplImage * ROIGray;
 
 //    CvSeq *contours = 0;
 //    CvPoint *point = 0;
@@ -44,7 +45,7 @@
 
 int main( int argc, char *argv[ ] )
 {
-   Initialization();
+//   Initialization();
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
@@ -70,10 +71,9 @@ int main( int argc, char *argv[ ] )
     Gray= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1 );  // Do not create the image everytime 
     HSV= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 3 );  // ROI Size
     HSV_Result= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 1);  // ROI Size
+
 //    HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime 
 //    HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
-
-//    cvNamedWindow ("Camera",1); // added 1 WINDOW_AUTOSIZE = camera capture size (640x480)
 
 	while (key != 'q'){
 		Picture = cvQueryFrame( capture );
@@ -82,18 +82,14 @@ int main( int argc, char *argv[ ] )
 		ImageProcessing(Picture);// Image processing routine
 
 
-
-
-
-                cvShowImage ("Camera", Picture);
-//                cvMoveWindow("Camera", 100, 50);
-                cvShowImage ("HSV", HSV);
-//                cvMoveWindow("HSV", 100, 50);
-//                cvShowImage ("Gray", Gray);
-//                cvMoveWindow("Gray", 100, 50);
-//						cvShowImage ("ROI", ROI);
-//                cvMoveWindow("ROI", 100, 50);
-
+		cvShowImage ("Camera", Picture);
+//		cvMoveWindow("Camera", 100, 50);
+//		cvShowImage ("HSV", HSV);
+//		cvMoveWindow("HSV", 100, 50);
+//		cvShowImage ("Gray", Gray);
+//		cvMoveWindow("Gray", 100, 50);
+		cvShowImage ("ROI", ROIGray);
+//		cvMoveWindow("ROI", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
@@ -103,5 +99,4 @@ int main( int argc, char *argv[ ] )
     cvDestroyWindow( "HSV" );    // Destroy the window
     cvReleaseCapture( &capture );   // Release it or never close
    close(Log);
-    }
-
+}

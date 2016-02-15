@@ -30,6 +30,7 @@ extern    IplImage * HSV_Result;
 extern    IplImage * Bin;
 extern    IplImage * Result;
 extern    IplImage * ROI;
+extern    IplImage * ROIGray;
 
 extern    CvSeq *contours;
 extern    CvPoint *point;
