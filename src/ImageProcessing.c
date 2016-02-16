@@ -17,6 +17,9 @@
 #include <ctype.h>
 #include "../include/AFCS.h"
 
+CvScalar Average;
+float AverageDouble;
+
 int ImageProcessing(IplImage * Picture){
 		// Extract ROI and put it in a different window
 		// ROI should come from an XY file of the feaures to
@@ -33,6 +36,15 @@ int ImageProcessing(IplImage * Picture){
 		cvCvtColor(ROI,ROIGray,CV_BGR2GRAY); // Convert color image to gray		
 		cvThreshold(ROIGray,ROIGray,220,254,CV_THRESH_BINARY); 
 		cvDilate(ROIGray, ROIGray, NULL, 1);      //last arg is iterations, lower is faster
+		Average=cvAvg(ROIGray,NULL);
+		AverageDouble = Average.val[0];
+		printf("%f\n",AverageDouble);
+		if(AverageDouble<=15)
+			printf("OFF\t");
+		if(AverageDouble>=60)
+			printf("ON\t");	
+//		printf("After Average\n");
+	
 
 	return;
 }
