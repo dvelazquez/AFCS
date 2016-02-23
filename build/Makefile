@@ -161,6 +161,21 @@ src/Mesh.s:
 .PHONY : src/Mesh.s
 
 # target to build an object file
+src/ReadXY.o:
+	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/src/ReadXY.o
+.PHONY : src/ReadXY.o
+
+# target to preprocess a source file
+src/ReadXY.i:
+	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/src/ReadXY.i
+.PHONY : src/ReadXY.i
+
+# target to generate assembly for a file
+src/ReadXY.s:
+	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/src/ReadXY.s
+.PHONY : src/ReadXY.s
+
+# target to build an object file
 src/main.o:
 	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/src/main.o
 .PHONY : src/main.o
@@ -193,6 +208,9 @@ help:
 	@echo "... src/Mesh.o"
 	@echo "... src/Mesh.i"
 	@echo "... src/Mesh.s"
+	@echo "... src/ReadXY.o"
+	@echo "... src/ReadXY.i"
+	@echo "... src/ReadXY.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

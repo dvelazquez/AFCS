@@ -45,7 +45,8 @@
 
 int main( int argc, char *argv[ ] )
 {
-//   Initialization();
+//		Initialization();
+		ReadXY();
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);

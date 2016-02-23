@@ -11,6 +11,8 @@ CMakeFiles/AFCS.bin.dir/src/Mesh.o
  /home/pi/OpenCV/AFCS/include/AFCS.h
  /home/pi/OpenCV/AFCS/src/Mesh.c
  /usr/local/include/opencv2/imgproc/imgproc_c.h
+CMakeFiles/AFCS.bin.dir/src/ReadXY.o
+ /home/pi/OpenCV/AFCS/src/ReadXY.c
 CMakeFiles/AFCS.bin.dir/src/main.o
  /home/pi/OpenCV/AFCS/include/AFCS.h
  /home/pi/OpenCV/AFCS/src/main.c

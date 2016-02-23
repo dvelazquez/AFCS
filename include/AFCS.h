@@ -35,6 +35,12 @@ extern    IplImage * ROIGray;
 extern    CvSeq *contours;
 extern    CvPoint *point;
 
+struct FileData {
+   char  Name[50];
+	float	X;
+	float Y;
+};
+
 
 
 

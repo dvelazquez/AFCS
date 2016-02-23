@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/home/pi/OpenCV/AFCS/src/ImageProcessing.c" "/home/pi/OpenCV/AFCS/build/CMakeFiles/AFCS.bin.dir/src/ImageProcessing.o"
   "/home/pi/OpenCV/AFCS/src/Initialization.c" "/home/pi/OpenCV/AFCS/build/CMakeFiles/AFCS.bin.dir/src/Initialization.o"
   "/home/pi/OpenCV/AFCS/src/Mesh.c" "/home/pi/OpenCV/AFCS/build/CMakeFiles/AFCS.bin.dir/src/Mesh.o"
+  "/home/pi/OpenCV/AFCS/src/ReadXY.c" "/home/pi/OpenCV/AFCS/build/CMakeFiles/AFCS.bin.dir/src/ReadXY.o"
   "/home/pi/OpenCV/AFCS/src/main.c" "/home/pi/OpenCV/AFCS/build/CMakeFiles/AFCS.bin.dir/src/main.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

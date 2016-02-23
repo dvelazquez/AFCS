@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /home/pi/OpenCV/AFCS/build
 CMakeFiles/AFCS.bin.dir/all:
 	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/depend
 	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/OpenCV/AFCS/build/CMakeFiles  1 2 3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/OpenCV/AFCS/build/CMakeFiles  1 2 3 4 5
 	@echo "Built target AFCS.bin"
 .PHONY : CMakeFiles/AFCS.bin.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/AFCS.bin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/AFCS.bin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/OpenCV/AFCS/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/OpenCV/AFCS/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/AFCS.bin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/pi/OpenCV/AFCS/build/CMakeFiles 0
 .PHONY : CMakeFiles/AFCS.bin.dir/rule
