@@ -9,9 +9,9 @@ Compiling with CMakeLists instead of Makefile:
 	./AFCS.bin   (or make -j 4 && ./AFCS.bin  
   
 To do:		use AFCS-run dialog ? <ul>
-					<li> work with ROI Detect </li>
-					<li>work with Log files </li>
-					<li>process XY positions from XY data in CSV / XLS </li>
+					<li>add CAN messages to ROI Detect </li>
+					<li>add values checked to Log files </li>
+					<li>transform XY positions to ROI </li>
 					<li>optimize variables </li>
 					<li>optimize functions </li>
 					<li>clean up code and add comments </li>
