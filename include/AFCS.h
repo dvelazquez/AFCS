@@ -35,12 +35,11 @@ extern    IplImage * ROIGray;
 extern    CvSeq *contours;
 extern    CvPoint *point;
 
-struct FileData {
+extern struct FileData {
    char  Name[50];
 	float	X;
 	float Y;
+	char Color[6];  
 };
 
-
-
-
+extern  struct FileData TT[40];        /*Declare how many structures to save max */

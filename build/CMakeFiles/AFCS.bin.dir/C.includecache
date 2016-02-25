@@ -6,11 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/pi/OpenCV/AFCS/src/ReadXY.c
+/home/pi/OpenCV/AFCS/include/AFCS.h
+
+/home/pi/OpenCV/AFCS/src/ImageProcessing.c
+opencv/cv.h
+-
+/usr/local/include/opencv2/imgproc/imgproc_c.h
+-
+opencv/highgui.h
+/home/pi/OpenCV/AFCS/src/opencv/highgui.h
 stdio.h
 -
 stdlib.h
 -
 string.h
 -
+assert.h
+-
+math.h
+-
+float.h
+-
+limits.h
+-
+time.h
+-
+ctype.h
+-
+../include/AFCS.h
+/home/pi/OpenCV/AFCS/include/AFCS.h
+
+/usr/local/include/opencv2/imgproc/imgproc_c.h
+opencv2/imgproc/types_c.h
+/usr/local/include/opencv2/imgproc/opencv2/imgproc/types_c.h
 

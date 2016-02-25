@@ -141,36 +141,12 @@ CMakeFiles/AFCS.bin.dir/src/Initialization.o.provides: CMakeFiles/AFCS.bin.dir/s
 
 CMakeFiles/AFCS.bin.dir/src/Initialization.o.provides.build: CMakeFiles/AFCS.bin.dir/src/Initialization.o
 
-CMakeFiles/AFCS.bin.dir/src/ReadXY.o: CMakeFiles/AFCS.bin.dir/flags.make
-CMakeFiles/AFCS.bin.dir/src/ReadXY.o: ../src/ReadXY.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/pi/OpenCV/AFCS/build/CMakeFiles $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/AFCS.bin.dir/src/ReadXY.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/AFCS.bin.dir/src/ReadXY.o   -c /home/pi/OpenCV/AFCS/src/ReadXY.c
-
-CMakeFiles/AFCS.bin.dir/src/ReadXY.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/AFCS.bin.dir/src/ReadXY.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/pi/OpenCV/AFCS/src/ReadXY.c > CMakeFiles/AFCS.bin.dir/src/ReadXY.i
-
-CMakeFiles/AFCS.bin.dir/src/ReadXY.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/AFCS.bin.dir/src/ReadXY.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/pi/OpenCV/AFCS/src/ReadXY.c -o CMakeFiles/AFCS.bin.dir/src/ReadXY.s
-
-CMakeFiles/AFCS.bin.dir/src/ReadXY.o.requires:
-.PHONY : CMakeFiles/AFCS.bin.dir/src/ReadXY.o.requires
-
-CMakeFiles/AFCS.bin.dir/src/ReadXY.o.provides: CMakeFiles/AFCS.bin.dir/src/ReadXY.o.requires
-	$(MAKE) -f CMakeFiles/AFCS.bin.dir/build.make CMakeFiles/AFCS.bin.dir/src/ReadXY.o.provides.build
-.PHONY : CMakeFiles/AFCS.bin.dir/src/ReadXY.o.provides
-
-CMakeFiles/AFCS.bin.dir/src/ReadXY.o.provides.build: CMakeFiles/AFCS.bin.dir/src/ReadXY.o
-
 # Object files for target AFCS.bin
 AFCS_bin_OBJECTS = \
 "CMakeFiles/AFCS.bin.dir/src/main.o" \
 "CMakeFiles/AFCS.bin.dir/src/Mesh.o" \
 "CMakeFiles/AFCS.bin.dir/src/ImageProcessing.o" \
-"CMakeFiles/AFCS.bin.dir/src/Initialization.o" \
-"CMakeFiles/AFCS.bin.dir/src/ReadXY.o"
+"CMakeFiles/AFCS.bin.dir/src/Initialization.o"
 
 # External object files for target AFCS.bin
 AFCS_bin_EXTERNAL_OBJECTS =
@@ -179,7 +155,6 @@ AFCS.bin: CMakeFiles/AFCS.bin.dir/src/main.o
 AFCS.bin: CMakeFiles/AFCS.bin.dir/src/Mesh.o
 AFCS.bin: CMakeFiles/AFCS.bin.dir/src/ImageProcessing.o
 AFCS.bin: CMakeFiles/AFCS.bin.dir/src/Initialization.o
-AFCS.bin: CMakeFiles/AFCS.bin.dir/src/ReadXY.o
 AFCS.bin: CMakeFiles/AFCS.bin.dir/build.make
 AFCS.bin: /usr/local/lib/libopencv_xphoto.so.3.0.0
 AFCS.bin: /usr/local/lib/libopencv_xobjdetect.so.3.0.0
@@ -245,7 +220,6 @@ CMakeFiles/AFCS.bin.dir/requires: CMakeFiles/AFCS.bin.dir/src/main.o.requires
 CMakeFiles/AFCS.bin.dir/requires: CMakeFiles/AFCS.bin.dir/src/Mesh.o.requires
 CMakeFiles/AFCS.bin.dir/requires: CMakeFiles/AFCS.bin.dir/src/ImageProcessing.o.requires
 CMakeFiles/AFCS.bin.dir/requires: CMakeFiles/AFCS.bin.dir/src/Initialization.o.requires
-CMakeFiles/AFCS.bin.dir/requires: CMakeFiles/AFCS.bin.dir/src/ReadXY.o.requires
 .PHONY : CMakeFiles/AFCS.bin.dir/requires
 
 CMakeFiles/AFCS.bin.dir/clean:

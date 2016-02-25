@@ -3,7 +3,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/AFCS.bin.dir/src/Mesh.o"
   "CMakeFiles/AFCS.bin.dir/src/ImageProcessing.o"
   "CMakeFiles/AFCS.bin.dir/src/Initialization.o"
-  "CMakeFiles/AFCS.bin.dir/src/ReadXY.o"
   "AFCS.bin.pdb"
   "AFCS.bin"
 )

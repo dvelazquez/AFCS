@@ -22,9 +22,8 @@ float AverageDouble;
 
 int ImageProcessing(IplImage * Picture){
 		// Extract ROI and put it in a different window
-		// ROI should come from an XY file of the feaures to
+		// XY for ROI comes from TT[i].X and TT[i].Y
 		// analyze (LEDs, Pointers, Displays, etc)
-		// extract to a different function and *.c file  ??			FEB 10 2016
 		cvSetImageROI(Picture, cvRect(285, 224, 25, 22));  // TT ROI Test
 		ROI = cvCreateImage(cvSize(25, 22), IPL_DEPTH_8U, 3); // 3 for color
 		ROIGray = cvCreateImage(cvSize(25, 22), IPL_DEPTH_8U, 1); // 1 for gray
@@ -42,9 +41,12 @@ int ImageProcessing(IplImage * Picture){
 		if(AverageDouble<=15)
 			printf("OFF\t");
 		if(AverageDouble>=60)
-			printf("ON\t");	
-//		printf("After Average\n");
-	
+			printf("ON\t");
+
+   printf( "TT[1].Name : %s\n", TT[1].Name);
+   printf( "TT[1].X: %f\n", TT[1].X);
+   printf( "TT[1].Y: %f\n\n", TT[1].Y);
+   printf( "TT[1].Color : %s\n", TT[1].Color);
 
 	return;
 }
