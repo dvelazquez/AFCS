@@ -46,7 +46,7 @@
 int main( int argc, char *argv[ ] )
 {
 //		Initialization();
-		ReadXY();
+//		ReadXY();
 
 /*   if( argc == 2){
       printf("Argument from command line was %s", argv[1]);
@@ -84,12 +84,13 @@ int main( int argc, char *argv[ ] )
 
 
 		cvShowImage ("Camera", Picture);
-//		cvMoveWindow("Camera", 100, 50);
+		cvMoveWindow("Camera", 100, 50);
 //		cvShowImage ("HSV", HSV);
 //		cvMoveWindow("HSV", 100, 50);
 //		cvShowImage ("Gray", Gray);
 //		cvMoveWindow("Gray", 100, 50);
-		cvShowImage ("ROI", ROIGray);
+//
+		cvShowImage ("ROI", ROI);
 //		cvMoveWindow("ROI", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
@@ -100,4 +101,5 @@ int main( int argc, char *argv[ ] )
     cvDestroyWindow( "HSV" );    // Destroy the window
     cvReleaseCapture( &capture );   // Release it or never close
    close(Log);
+	//	fclose(fp);
 }

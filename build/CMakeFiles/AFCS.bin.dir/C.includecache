@@ -8,7 +8,7 @@
 
 /home/pi/OpenCV/AFCS/include/AFCS.h
 
-/home/pi/OpenCV/AFCS/src/ImageProcessing.c
+/home/pi/OpenCV/AFCS/src/Mesh.c
 opencv/cv.h
 -
 /usr/local/include/opencv2/imgproc/imgproc_c.h

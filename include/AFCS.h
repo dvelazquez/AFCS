@@ -7,6 +7,7 @@
 #define RED CV_RGB(255,0,0)
 #define GREEN CV_RGB(0,255,0)
 #define BLUE CV_RGB(0,0,255)
+#define AMBER CV_RGB(255,191,0)
 #define BLACK CV_RGB(0,0,0)
 #define WHITE CV_RGB(255,255,255)
 #define MAX_CONTOUR_LEVELS 10
@@ -34,6 +35,8 @@ extern    IplImage * ROIGray;
 
 extern    CvSeq *contours;
 extern    CvPoint *point;
+
+extern char FileName[70];
 
 extern struct FileData {
    char  Name[50];

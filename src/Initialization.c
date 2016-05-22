@@ -22,7 +22,7 @@ struct FileData {
 struct FileData TT[10];        /*Declare how many structures to save */ 
 
 int Initialization( ){
-   strcat(FileName,"logs/");   
+   strcat(FileName,"../logs/");   
    printf("Enter Project Name\n");
    scanf("%s",ProjectName);
    strcat(FileName,ProjectName);   
@@ -36,8 +36,14 @@ int Initialization( ){
    strcat(FileName, __TIME__);
    printf("FileName=%s\n",FileName);
    Log = open(FileName, O_RDWR | O_CREAT, -1);  // This is the file name I want
+	close(Log);
 
-  return;
+/*	FILE *fp1;
+	fp1= fopen(FileName,"w");
+	fprintf(fp1, "Writing test\n");
+	printf("Ya paso el fprintf Writing Test");*/
+
+  return FileName;
   // dont forge to    close(Log);
 }
 
@@ -63,6 +69,7 @@ int ReadXY( ) {
    printf( "TT[%i].Y: %f\n", i, TT[i].Y);
    printf( "TT[%i].Color : %s\n\n", i, TT[i].Color);
 	i++;
+
 }
 	fclose(fp);
    return 0;	// Shall I return the struct instead of making it global??
