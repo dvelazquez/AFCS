@@ -17,9 +17,9 @@ struct FileData {
    char  Name[50];
 	float	X;
 	float Y;
-	char Color[6];
+	char Color[10];
 };
-struct FileData TT[10];        /*Declare how many structures to save */ 
+struct FileData TT[50];        /*Declare how many structures to save */ 
 
 int Initialization( ){
    strcat(FileName,"../logs/");   
@@ -49,10 +49,10 @@ int Initialization( ){
 
 int ReadXY( ) {
    FILE *fp;
-	char str1[20], str2[6], str3[6], str4[6];	// Name, X, Y, Color
+	char str1[50], str2[6], str3[6], str4[10];	// Name, X, Y, Color
 	int i=1;
  
-   fp = fopen("../TestXY.csv", "r");
+   fp = fopen("../LEDsXY.csv", "r");
 
 	while(1)	{ 
 	fscanf(fp, "%s %s %s %s", str1, str2, str3,str4);
@@ -69,7 +69,8 @@ int ReadXY( ) {
    printf( "TT[%i].Y: %f\n", i, TT[i].Y);
    printf( "TT[%i].Color : %s\n\n", i, TT[i].Color);
 	i++;
-
+	printf("Aqui va: %i\n",i);
+//	sleep(1);
 }
 	fclose(fp);
    return 0;	// Shall I return the struct instead of making it global??

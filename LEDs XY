@@ -24,6 +24,17 @@ Speedo positions
 (940,580)
 (1005,580)
 (1065,580)
-
-
+// Center backlight LEDs, lines clockwise
+(450,300)
+(610,300)
+(775,300)
+// Tacho Telltales
+(200,535) // Battery
+(300,415) // Park Brake
+(310,450) // Track OFF
+(290,530) // Lights ON
+(345,495) // SES
+(195,420) // Security
+(225,400) // Tow
+(180,505) // ESC OFF
 

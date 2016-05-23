@@ -86,10 +86,6 @@ int Mesh(IplImage * Picture){
 	cvRectangle(Picture, cvPoint(225,400), cvPoint(255,430), AMBER, 2,1,1); // Tow
 	cvRectangle(Picture, cvPoint(180,505), cvPoint(210,535), AMBER, 2,1,1); // ESC OFF
 
-
-
-
-
 	return ;
 }
 /*
