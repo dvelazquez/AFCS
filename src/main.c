@@ -89,7 +89,7 @@ int main( int argc, char *argv[ ] )
 //		cvMoveWindow("HSV", 100, 50);
 //		cvShowImage ("Gray", Gray);
 //		cvMoveWindow("Gray", 100, 50);
-//
+
 		cvShowImage ("ROI", ROI);
 //		cvMoveWindow("ROI", 100, 50);
 

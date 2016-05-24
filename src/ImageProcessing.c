@@ -28,8 +28,8 @@ int ImageProcessing(IplImage * Picture){
 		// analyze (LEDs, Pointers, Displays, etc)
 
 		// TT ROI Test1		<- Use same ROI on every TT
-//		cvSetImageROI(Picture, cvRect(TT[Cycle].X/2, TT[Cycle].Y/2, 20, 20));  
-		cvSetImageROI(Picture, cvRect(55, 252, 20, 20));
+		cvSetImageROI(Picture, cvRect(TT[i].X/2, TT[i].Y/2, 20, 20));  
+//		cvSetImageROI(Picture, cvRect(55, 252, 20, 20));
 		ROI = cvCreateImage(cvSize(20, 20), IPL_DEPTH_8U, 3); // 3 for color
 		ROIGray = cvCreateImage(cvSize(20, 20), IPL_DEPTH_8U, 1); // 1 for gray
 		/* copy subimage */
@@ -42,13 +42,13 @@ int ImageProcessing(IplImage * Picture){
 		cvDilate(ROIGray, ROIGray, NULL, 1);      //last arg is iterations, lower is faster
 		Average=cvAvg(ROIGray,NULL);
 		AverageDouble = Average.val[0];
-		printf("%f\n",AverageDouble);
+		printf("Average=%f\t",AverageDouble);
 		if(AverageDouble<=15)
-			printf("OFF\t");
-		if(AverageDouble>=50)
-			printf("ON\t");
+			printf("OFF\n");
+		if(AverageDouble>=16)
+			printf("ON\n");
 
-	for(i=1;i<36;i++){
+//	for(i=1;i<36;i++){
 		printf("Empieza\n");
 	   printf( "TT[%i].Name : %s\n", i, TT[i].Name);
 	   printf( "TT[%i].X: %f\n", i, TT[i].X);
@@ -56,13 +56,16 @@ int ImageProcessing(IplImage * Picture){
 	   printf( "TT[%i].Color : %s\n", i, TT[i].Color);
 	   printf("FileName=%s\n",FileName);
 		printf("Termina\n\n");
-		sleep(1);
-	}
+		if(i==32)
+			i=1;
+//		sleep(1);
+//	}
+	i++;
 
 /*		cvShowImage ("Camera", Picture);
 		cvMoveWindow("Camera", 100, 50);
-		cvShowImage ("ROI", ROI); */
-		//sleep(1);
+		cvShowImage ("ROI", ROI); 
+		sleep(1);*/
 //	}
 
 	return;
