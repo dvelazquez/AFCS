@@ -83,14 +83,14 @@ int main( int argc, char *argv[ ] )
 		ImageProcessing(Picture);// Image processing routine
 
 
-//		cvShowImage ("Camera", Picture);
-//		cvMoveWindow("Camera", 100, 50);
+		cvShowImage ("Camera", Picture);
+		cvMoveWindow("Camera", 100, 50);
 //		cvShowImage ("HSV", HSV);
 //		cvMoveWindow("HSV", 100, 50);
 //		cvShowImage ("Gray", Gray);
 //		cvMoveWindow("Gray", 100, 50);
 //
-//		cvShowImage ("ROI", ROI);
+		cvShowImage ("ROI", ROI);
 //		cvMoveWindow("ROI", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit

@@ -1,4 +1,4 @@
-git config --global credential.helper cache
+#git config --global credential.helper cache
 git add *   # or individual file names
-git commit -m "Message to commit (or change description)
+git commit -m $(date) #"Message to commit (or change description)
 git push origin master

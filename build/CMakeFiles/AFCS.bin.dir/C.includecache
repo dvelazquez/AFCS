@@ -36,16 +36,6 @@ ctype.h
 ../include/AFCS.h
 /home/pi/OpenCV/AFCS/include/AFCS.h
 
-/home/pi/OpenCV/AFCS/src/Initialization.c
-fcntl.h
--
-stdio.h
--
-stdlib.h
--
-string.h
--
-
 /usr/local/include/opencv2/imgproc/imgproc_c.h
 opencv2/imgproc/types_c.h
 /usr/local/include/opencv2/imgproc/opencv2/imgproc/types_c.h

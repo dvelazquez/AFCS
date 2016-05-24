@@ -20,22 +20,13 @@
 CvScalar Average;
 float AverageDouble;
 int Cycle=1;  // use a getsize function, for now use the known quantity
+int i;
 
 int ImageProcessing(IplImage * Picture){
 		// Extract ROI and put it in a different window
 		// XY for ROI comes from TT[i].X and TT[i].Y
 		// analyze (LEDs, Pointers, Displays, etc)
 
-	for(Cycle=1;Cycle<36;Cycle++){
-		printf("Empieza\n");
-	   printf( "TT[%i].Name : %s\n", Cycle, TT[Cycle].Name);
-	   printf( "TT[%i].X: %f\n", Cycle, TT[Cycle].X);
-	   printf( "TT[%i].Y: %f\n\n", Cycle, TT[Cycle].Y);
-	   printf( "TT[%i].Color : %s\n", Cycle, TT[Cycle].Color);
-	   printf("FileName=%s\n",FileName);
-		printf("Termina\n\n");
-		sleep(1);
-	}
 		// TT ROI Test1		<- Use same ROI on every TT
 //		cvSetImageROI(Picture, cvRect(TT[Cycle].X/2, TT[Cycle].Y/2, 20, 20));  
 		cvSetImageROI(Picture, cvRect(55, 252, 20, 20));
@@ -56,11 +47,21 @@ int ImageProcessing(IplImage * Picture){
 			printf("OFF\t");
 		if(AverageDouble>=50)
 			printf("ON\t");
-//	Cycle++;
 
-		cvShowImage ("Camera", Picture);
+	for(i=1;i<36;i++){
+		printf("Empieza\n");
+	   printf( "TT[%i].Name : %s\n", i, TT[i].Name);
+	   printf( "TT[%i].X: %f\n", i, TT[i].X);
+	   printf( "TT[%i].Y: %f\n\n", i, TT[i].Y);
+	   printf( "TT[%i].Color : %s\n", i, TT[i].Color);
+	   printf("FileName=%s\n",FileName);
+		printf("Termina\n\n");
+		sleep(1);
+	}
+
+/*		cvShowImage ("Camera", Picture);
 		cvMoveWindow("Camera", 100, 50);
-		cvShowImage ("ROI", ROI);
+		cvShowImage ("ROI", ROI); */
 		//sleep(1);
 //	}
 
