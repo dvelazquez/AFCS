@@ -40,22 +40,16 @@
     CvFont font;
     double hScale=0.5;
     double vScale=0.5;
+	char pause;
 
     int    lineWidth=1; 
 
 int main( int argc, char *argv[ ] )
 {
-		Initialization();
-		ReadXY();
-
-/*   if( argc == 2){
-      printf("Argument from command line was %s", argv[1]);
-      return 0;         // Example how to read the input from the command line
-   }*/
-
+	Initialization();
+	ReadXY();
    CvMemStorage* storage = cvCreateMemStorage(0); //added 0 as default 64k
    CvCapture * capture;
-
     /* Buffer */
    capture = cvCaptureFromCAM(0); // the parameter for a cam
 
@@ -70,35 +64,28 @@ int main( int argc, char *argv[ ] )
     Picture = cvQueryFrame( capture );
 
     Gray= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1 );  // Do not create the image everytime 
-    HSV= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 3 );  // ROI Size
-    HSV_Result= cvCreateImage( cvSize(25, 22), IPL_DEPTH_8U, 1);  // ROI Size
-
-//    HSV= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 3 );  // Do not create the image everytime 
-//    HSV_Result= cvCreateImage( cvGetSize(Picture), IPL_DEPTH_8U, 1);  // Results is mono image
 
 	while (key != 'q'){
 		Picture = cvQueryFrame( capture );
+//		Mesh(Picture );  // Routine to draw a mesh with coordinates
 
-		Mesh(Picture );  // Routine to draw a mesh with coordinates
 		ImageProcessing(Picture);// Image processing routine
 
-
 		cvShowImage ("Camera", Picture);
-		cvMoveWindow("Camera", 100, 50);
-//		cvShowImage ("HSV", HSV);
-//		cvMoveWindow("HSV", 100, 50);
+//		cvMoveWindow("Camera", 100, 50);
 //		cvShowImage ("Gray", Gray);
 //		cvMoveWindow("Gray", 100, 50);
 
-		cvShowImage ("ROI", ROI);
+		cvShowImage ("ROI", ROIGray);
 //		cvMoveWindow("ROI", 100, 50);
 
        key = cvWaitKey( 1 );    // Press Q to Quit
         }
 
     cvReleaseMemStorage(&storage);
-    cvReleaseImage( &HSV );
-    cvDestroyWindow( "HSV" );    // Destroy the window
+    cvReleaseImage( &Picture );
+    cvDestroyWindow( "Camera" );    // Destroy the window
+    cvDestroyWindow( "ROI" );    // Destroy the window
     cvReleaseCapture( &capture );   // Release it or never close
    close(Log);
 	//	fclose(fp);

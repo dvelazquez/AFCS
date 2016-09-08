@@ -21,53 +21,55 @@ CvScalar Average;
 float AverageDouble;
 int Cycle=1;  // use a getsize function, for now use the known quantity
 int i;
+char pause;
 
 int ImageProcessing(IplImage * Picture){
+	// Left Cross
+	cvLine(Picture,cvPoint(380, 800),cvPoint(420,800),RED,2,0,1);
+	cvLine(Picture,cvPoint(400, 780),cvPoint(400,820),RED,2,0,1);
+	// Right Cross
+	cvLine(Picture,cvPoint(830, 800),cvPoint(870,800),RED,2,0,1);
+	cvLine(Picture,cvPoint(850, 780),cvPoint(850,820),RED,2,0,1);
+
 		// Extract ROI and put it in a different window
 		// XY for ROI comes from TT[i].X and TT[i].Y
 		// analyze (LEDs, Pointers, Displays, etc)
+	for(i=0;i<31;i++){
+		cvResetImageROI(Picture);		// always reset the Region of Interest
+		cvSetImageROI(Picture, cvRect(TT[i].X/2, TT[i].Y/2, 15, 15));  
+		ROI = cvCreateImage(cvSize(15, 15), IPL_DEPTH_8U, 3); // 3 for color
+		ROIGray = cvCreateImage(cvSize(15, 15), IPL_DEPTH_8U, 1); // 1 for gray
+		cvCopy(Picture, ROI, NULL); // copy sub image
 
-		// TT ROI Test1		<- Use same ROI on every TT
-		cvSetImageROI(Picture, cvRect(TT[i].X/2, TT[i].Y/2, 20, 20));  
-//		cvSetImageROI(Picture, cvRect(55, 252, 20, 20));
-		ROI = cvCreateImage(cvSize(20, 20), IPL_DEPTH_8U, 3); // 3 for color
-		ROIGray = cvCreateImage(cvSize(20, 20), IPL_DEPTH_8U, 1); // 1 for gray
-		/* copy subimage */
-		cvCopy(Picture, ROI, NULL);
-		/* always reset the Region of Interest */
-		cvResetImageROI(Picture);
 		/* This routine is the size of a TT and can see it ON or OFF */
 		cvCvtColor(ROI,ROIGray,CV_BGR2GRAY); // Convert color image to gray		
-		cvThreshold(ROIGray,ROIGray,220,254,CV_THRESH_BINARY); 
+		cvThreshold(ROIGray,ROIGray,200,254,CV_THRESH_BINARY); 
 		cvDilate(ROIGray, ROIGray, NULL, 1);      //last arg is iterations, lower is faster
 		Average=cvAvg(ROIGray,NULL);
 		AverageDouble = Average.val[0];
-		printf("Average=%f\t",AverageDouble);
-		if(AverageDouble<=15)
-			printf("OFF\n");
-		if(AverageDouble>=16)
-			printf("ON\n");
-
-//	for(i=1;i<36;i++){
-		printf("Empieza\n");
 	   printf( "TT[%i].Name : %s\n", i, TT[i].Name);
+		printf("Average=%f\t",AverageDouble);
+		if(AverageDouble<=5)
+			printf("OFF\n");
+		if(AverageDouble>=6){
+			printf("ON\n");
+			cvShowImage ("ROI", ROI); 
+			sleep(1);
+		}
 	   printf( "TT[%i].X: %f\n", i, TT[i].X);
 	   printf( "TT[%i].Y: %f\n\n", i, TT[i].Y);
 	   printf( "TT[%i].Color : %s\n", i, TT[i].Color);
-	   printf("FileName=%s\n",FileName);
-		printf("Termina\n\n");
-		if(i==32)
+		//printf("FileName=%s\n",FileName);
+		printf("Termina 1 for\n\n");
+
+	}
+		/*if(i>30){
 			i=1;
-//		sleep(1);
-//	}
-	i++;
+		}*/
+		printf("Termina 30 TTs\n");
+		//i++;
 
-/*		cvShowImage ("Camera", Picture);
-		cvMoveWindow("Camera", 100, 50);
-		cvShowImage ("ROI", ROI); 
-		sleep(1);*/
-//	}
-
+		cvResetImageROI(Picture);		// always reset the Region of Interest
 	return;
 }
 
@@ -109,4 +111,11 @@ int ImageProcessing(IplImage * Picture){
 		// Lets try circles detection 
 //		cvFindContours(HSV_Result, storage, &contours, sizeof(CvContour), CV_RETR_TREE, CV_CHAIN_APPROX_NONE, cvPoint(0,0));
 //		cvDrawContours(Picture, &contours, RED, GREEN, MAX_CONTOUR_LEVELS, 1, CV_AA, cvPoint(0,0));
+//	i++;
+
+/*		cvShowImage ("Camera", Picture);
+		cvMoveWindow("Camera", 100, 50);
+		cvShowImage ("ROI", ROI); 
+		sleep(1);
+	}	*/
 

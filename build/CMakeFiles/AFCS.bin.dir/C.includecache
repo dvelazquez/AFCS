@@ -8,7 +8,7 @@
 
 /home/pi/OpenCV/AFCS/include/AFCS.h
 
-/home/pi/OpenCV/AFCS/src/ImageProcessing.c
+/home/pi/OpenCV/AFCS/src/main.c
 opencv/cv.h
 -
 /usr/local/include/opencv2/imgproc/imgproc_c.h
@@ -32,6 +32,8 @@ limits.h
 time.h
 -
 ctype.h
+-
+fcntl.h
 -
 ../include/AFCS.h
 /home/pi/OpenCV/AFCS/include/AFCS.h

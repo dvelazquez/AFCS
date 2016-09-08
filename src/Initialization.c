@@ -69,8 +69,8 @@ int ReadXY( ) {
    printf( "TT[%i].Y: %f\n", i, TT[i].Y);
    printf( "TT[%i].Color : %s\n\n", i, TT[i].Color);
 	i++;
-	printf("Aqui va: %i\n",i);
-//	sleep(1);
+	//printf("Aqui va: %i\n",i);
+	//	sleep(1);
 }
 	fclose(fp);
    return 0;	// Shall I return the struct instead of making it global??
